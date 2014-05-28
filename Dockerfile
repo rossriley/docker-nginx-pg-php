@@ -1,8 +1,7 @@
-FROM        ubuntu:saucy
+FROM        ubuntu:14.04
 MAINTAINER  Ross Riley "riley.ross@gmail.com"
 
 # Install nginx
-RUN echo "deb http://archive.ubuntu.com/ubuntu saucy main universe" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
@@ -25,9 +24,6 @@ RUN echo "date.timezone = Europe/London;" >> etc/php5/fpm/php.ini
 
 VOLUME ["/data/pgsql"]
 # Install Postgresql
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list ;\
-    wget --no-check-certificate --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-
 RUN apt-get update
 RUN apt-get -y install postgresql-9.3
 RUN apt-get -y install postgresql-contrib-9.3
