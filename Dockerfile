@@ -35,7 +35,7 @@ ADD supervisor/nginx.conf /etc/supervisor/conf.d/
 ADD supervisor/php.conf /etc/supervisor/conf.d/
 ADD supervisor/postgresql.conf /etc/supervisor/conf.d/
 ADD supervisor/user.conf /etc/supervisor/conf.d/
-ADD supervisor/mysql-runner.sh /etc/supervisor/conf.d/postgresql-start.sh
+ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
 ADD config/nginx.conf /etc/nginx/sites-available/default
