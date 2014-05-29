@@ -27,8 +27,8 @@ VOLUME ["/data/pgsql"]
 RUN apt-get update
 RUN apt-get -y install postgresql-9.3
 RUN apt-get -y install postgresql-contrib-9.3
+RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/postgresql/9.3/main/postgresql.conf
 RUN chown -R postgres:postgres /data/pgsql
-
 
 RUN apt-get install -y supervisor
 ADD supervisor/nginx.conf /etc/supervisor/conf.d/

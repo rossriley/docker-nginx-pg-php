@@ -1,7 +1,5 @@
 #/bin/bash
+chown -R postgres /var/lib/postgresql/9.3/main
+chmod -R 700 /var/lib/postgresql/9.3/main
 
-if [ ! -f /data/mysql/ibdata1 ]; then
-    mysql_install_db
-fi
-
-/usr/bin/mysqld_safe
+/etc/init.d/postgresql start
