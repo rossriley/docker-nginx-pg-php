@@ -13,6 +13,15 @@ RUN locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN dpkg-reconfigure locales
 
+
+VOLUME ["/data/pgsql"]
+# Install Postgresql
+RUN apt-get update
+RUN apt-get -y install postgresql-9.3
+RUN apt-get -y install postgresql-contrib-9.3
+RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/postgresql/9.3/main/postgresql.conf
+RUN chown -R postgres:postgres /data/pgsql
+
 # Install PHP5 and modules
 RUN apt-get install -y curl git
 RUN apt-get -y install php5-fpm php5-pgsql php-apc php5-mcrypt php5-curl php5-gd php5-json php5-cli
@@ -25,14 +34,6 @@ RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
 RUN echo "max_input_vars = 10000;" >> /etc/php5/fpm/php.ini
 RUN echo "date.timezone = Europe/London;" >> etc/php5/fpm/php.ini
 
-
-VOLUME ["/data/pgsql"]
-# Install Postgresql
-RUN apt-get update
-RUN apt-get -y install postgresql-9.3
-RUN apt-get -y install postgresql-contrib-9.3
-RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/postgresql/9.3/main/postgresql.conf
-RUN chown -R postgres:postgres /data/pgsql
 
 RUN apt-get install -y supervisor
 ADD supervisor/nginx.conf /etc/supervisor/conf.d/
