@@ -9,8 +9,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Internal Port Expose
 EXPOSE 80 443
 
-RUN locale-gen en_GB.UTF-8 && \
-    echo 'LANG="en_GB.UTF-8"' > /etc/default/locale
+RUN locale-gen en_US en_US.UTF-8
 RUN dpkg-reconfigure locales
 
 # Install PHP5 and modules
