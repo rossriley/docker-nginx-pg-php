@@ -11,6 +11,7 @@ EXPOSE 80 443
 
 RUN locale-gen en_GB.UTF-8 && \
     echo 'LANG="en_GB.UTF-8"' > /etc/default/locale
+RUN dpkg-reconfigure locales
 
 # Install PHP5 and modules
 RUN apt-get install -y curl git
