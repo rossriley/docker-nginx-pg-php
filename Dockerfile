@@ -9,6 +9,9 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Internal Port Expose
 EXPOSE 80 443
 
+RUN locale-gen en_GB.UTF-8 && \
+    echo 'LANG="en_GB.UTF-8"' > /etc/default/locale
+
 # Install PHP5 and modules
 RUN apt-get install -y curl git
 RUN apt-get -y install php5-fpm php5-pgsql php-apc php5-mcrypt php5-curl php5-gd php5-json php5-cli
