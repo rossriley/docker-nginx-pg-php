@@ -19,6 +19,8 @@ VOLUME ["/data/pgsql"]
 RUN apt-get update
 RUN apt-get -y install postgresql-9.3
 RUN apt-get -y install postgresql-contrib-9.3
+
+# We start it here to allow the default directory to seed with the db setup
 RUN /etc/init.d/postgresql start
 RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/postgresql/9.3/main/postgresql.conf
 RUN chown -R postgres:postgres /data/pgsql
