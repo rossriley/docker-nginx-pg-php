@@ -8,7 +8,7 @@ if [[ ! "$(ls -A $DATA_DIR)" ]]; then
 
 fi
 
-chown -R postgres $DATA_DIR
+chown -R postgres:postgres $DATA_DIR
 chmod -R 700 $DATA_DIR
 
 /etc/init.d/postgresql start
