@@ -23,7 +23,7 @@ RUN apt-get -y install postgresql-contrib-9.3
 # We start it here to allow the default directory to seed with the db setup
 RUN /etc/init.d/postgresql start
 RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/postgresql/9.3/main/postgresql.conf
-RUN echo 'host all all 0.0.0.0/0 md5' >> /etc/postgresql/9.3/main/pg_hba.conf
+RUN echo 'local all all peer' >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN echo 'adminmap   postgres         postgres' >> /etc/postgresql/9.3/main/pg_ident.conf
 RUN echo 'adminmap   root             postgres' >> /etc/postgresql/9.3/main/pg_ident.conf
 RUN chown -R postgres:postgres /data/
