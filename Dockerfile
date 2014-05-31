@@ -51,6 +51,5 @@ RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
 ADD config/nginx.conf /etc/nginx/sites-available/default
 
-
-
+ADD ./ /var/www/
 CMD ["/usr/bin/supervisord", "-n"]
