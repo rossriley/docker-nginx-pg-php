@@ -4,9 +4,11 @@ DATA_DIR=/data/pgsql
 # test if DATA_DIR has content
 if [[ ! "$(ls -A $DATA_DIR)" ]]; then
     echo "Initializing PostgreSQL at $DATA_DIR"
-    cp -R /var/lib/postgresql/9.3/main/* $DATA_DIR
-    
-    post_start_action() {
+    cp -R /var/lib/postgresql/9.3/main/* $DATA_DIR  
+    FIRST_RUN="true"  
+fi
+
+post_start_action() {
         echo "Creating the superuser: $USER"
 
         setuser postgres psql -q <<-EOF
@@ -25,14 +27,12 @@ EOF
 EOF
         fi
     }
-    
-fi
 
 chown -R postgres:postgres $DATA_DIR
 chmod -R 700 $DATA_DIR
 
 /etc/init.d/postgresql start
 
-if type post_start_action
+if [[$FIRST_RUN]]
     post_start_action
 fi
