@@ -33,6 +33,6 @@ chmod -R 700 $DATA_DIR
 
 /etc/init.d/postgresql start
 
-if [[$FIRST_RUN]]
+if [[$FIRST_RUN]]; then
     post_start_action
 fi
