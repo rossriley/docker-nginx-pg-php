@@ -26,7 +26,7 @@ EOF
                 GRANT ALL ON DATABASE $db TO $PG_USER
 EOF
         fi
-    }
+}
 
 chown -R postgres:postgres $DATA_DIR
 chmod -R 700 $DATA_DIR
