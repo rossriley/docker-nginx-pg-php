@@ -23,6 +23,7 @@ EOF
                 CREATE DATABASE $PG_DB WITH OWNER=$PG_USER ENCODING='UTF8';
                 GRANT ALL ON DATABASE $db TO $PG_USER
 EOF
+        fi
     }
     
 fi
