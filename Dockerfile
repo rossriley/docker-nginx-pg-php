@@ -6,9 +6,6 @@ RUN apt-get update
 RUN apt-get install -y nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-# Internal Port Expose
-EXPOSE 80 443
-
 RUN locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN dpkg-reconfigure locales
@@ -50,6 +47,9 @@ ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
 ADD config/nginx.conf /etc/nginx/sites-available/default
+
+# Internal Port Expose
+EXPOSE 80 443
 
 ADD ./ /var/www/
 CMD ["/usr/bin/supervisord", "-n"]
