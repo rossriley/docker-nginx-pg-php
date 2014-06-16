@@ -23,7 +23,7 @@ RUN sed -i -e"s/data_directory =.*$/data_directory = '\/data\/pgsql'/" /etc/post
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.3/main/postgresql.conf
 RUN echo 'local all all peer' >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN echo 'adminmap   postgres         postgres' >> /etc/postgresql/9.3/main/pg_ident.conf
-RUN echo 'adminmap   root             postgres' >> /etc/postgresql/9.3/main/pg_ident.conf
+RUN echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN chown -R postgres:postgres /data/
 
 # Install PHP5 and modules
