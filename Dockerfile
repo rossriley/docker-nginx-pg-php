@@ -11,8 +11,8 @@ RUN locale-gen en_US.UTF-8 && \
 RUN dpkg-reconfigure locales
 
 
-VOLUME ["/data/pgsql"]
 # Install Postgresql
+VOLUME ["/data/pgsql"]
 RUN apt-get update
 RUN apt-get -y install postgresql-9.3
 RUN apt-get -y install postgresql-contrib-9.3
