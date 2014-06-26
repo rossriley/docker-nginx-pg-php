@@ -49,6 +49,7 @@ ADD supervisor/user.conf /etc/supervisor/conf.d/
 ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
+# Adds the default server to nginx config
 ADD config/nginx.conf /etc/nginx/sites-available/default
 
 # Internal Port Expose
