@@ -1,5 +1,6 @@
 FROM        ubuntu:14.04
 MAINTAINER  Ross Riley "riley.ross@gmail.com"
+
 # Install nginx
 RUN apt-get update
 RUN apt-get install -y nginx
