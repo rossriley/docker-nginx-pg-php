@@ -11,10 +11,11 @@ fi
 post_start_action() {
     echo "Creating the superuser: $APP_USER"
     sudo -u postgres -H -- psql -c "DROP ROLE IF EXISTS $APP_USER;CREATE ROLE $APP_USER WITH ENCRYPTED PASSWORD '$APP_PASS';ALTER USER $APP_USER WITH ENCRYPTED PASSWORD '$APP_PASS';ALTER ROLE $APP_USER WITH SUPERUSER;ALTER ROLE $APP_USER WITH LOGIN;"
-    if [ $(`env | grep APP_DB`) ]; then
+    env | grep -q APP_DB
+    if [ $? -eq 0 ]; then
         sudo -u postgres -H -- psql -c "CREATE DATABASE $APP_DB WITH OWNER=$APP_USER ENCODING='UTF8';"
         sudo -u postgres -H -- psql -c "GRANT ALL ON DATABASE $APP_DB TO $APP_USER;"
-        sudo -u postgres -H -- psql -c "CREATE EXTENSION 'uuid-ossp';"
+        sudo -u postgres -H -- psql -c "CREATE EXTENSION \"uuid-ossp\";"
     fi
 }
 
