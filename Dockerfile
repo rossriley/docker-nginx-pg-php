@@ -4,6 +4,7 @@ MAINTAINER  Ross Riley "riley.ross@gmail.com"
 # Install nginx
 RUN apt-get update
 RUN apt-get install -y nginx
+ENV HOME /root
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 RUN locale-gen en_US.UTF-8 && \
