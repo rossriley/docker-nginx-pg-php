@@ -10,7 +10,6 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN dpkg-reconfigure locales
-RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
 
 # Install Postgresql
@@ -50,6 +49,10 @@ ADD supervisor/postgresql.conf /etc/supervisor/conf.d/
 ADD supervisor/user.conf /etc/supervisor/conf.d/
 ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
+
+# Disallow key checking
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+
 
 # Adds the default server to nginx config
 ADD config/nginx.conf /etc/nginx/sites-available/default
