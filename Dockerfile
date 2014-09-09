@@ -51,7 +51,7 @@ ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
 # Disallow key checking
-RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
 
 # Adds the default server to nginx config
