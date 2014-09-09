@@ -10,6 +10,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN locale-gen en_US.UTF-8 && \
     echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN dpkg-reconfigure locales
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
 
 # Install Postgresql
