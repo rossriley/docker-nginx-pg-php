@@ -42,7 +42,8 @@ RUN echo "max_input_vars = 10000;" >> /etc/php5/fpm/php.ini
 RUN echo "date.timezone = Europe/London;" >> etc/php5/fpm/php.ini
 
 # Setup supervisor
-RUN apt-get install -y supervisor
+RUN apt-get install -y supervisor cron
+ADD supervisor/cron.conf /etc/supervisor/conf.d/
 ADD supervisor/nginx.conf /etc/supervisor/conf.d/
 ADD supervisor/php.conf /etc/supervisor/conf.d/
 ADD supervisor/postgresql.conf /etc/supervisor/conf.d/
