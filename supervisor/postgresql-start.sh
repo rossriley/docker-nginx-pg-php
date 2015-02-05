@@ -15,8 +15,8 @@ post_start_action() {
     if [ $? -eq 0 ]; then
         sudo -u postgres -H -- psql -c "CREATE DATABASE $APP_DB WITH OWNER=$APP_USER ENCODING='UTF8';"
         sudo -u postgres -H -- psql -c "GRANT ALL ON DATABASE $APP_DB TO $APP_USER;"
-        sudo -u postgres -H -- psql -c "CREATE EXTENSION \"uuid-ossp\";"
     fi
+    sudo -u postgres -H -- psql -c "CREATE EXTENSION \"uuid-ossp\";"
 }
 
 chown -R postgres:postgres $DATA_DIR
