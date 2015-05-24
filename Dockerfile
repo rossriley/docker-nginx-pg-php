@@ -51,9 +51,6 @@ ADD supervisor/user.conf /etc/supervisor/conf.d/
 ADD supervisor/postgresql-start.sh /etc/supervisor/conf.d/postgresql-start.sh
 RUN chmod +x /etc/supervisor/conf.d/postgresql-start.sh
 
-# Log cron job output
-RUN sed -i -e "s/^#cron\.\*/cron\.\*/" /etc/rsyslog.d/50-default.conf
-
 # Disallow key checking
 RUN echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
