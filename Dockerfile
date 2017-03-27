@@ -35,6 +35,8 @@ RUN sed -i -e "s/post_max_size = 8M/post_max_size = 20M/g" /etc/php5/fpm/php.ini
 RUN sed -i -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/g" /etc/php5/fpm/php.ini
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+RUN rm /etc/php5/fpm/conf.d/05-opcache.ini
+RUN rm /etc/php5/fpm/conf.d/20-apcu.ini
 
 # Configure nginx for PHP websites
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
