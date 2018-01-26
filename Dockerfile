@@ -4,12 +4,12 @@ MAINTAINER  Ross Riley "riley.ross@gmail.com"
 # Install nginx
 ENV HOME /root
 RUN apt-get update
-RUN apt-get install -y nginx locales
+RUN apt-get install -y nginx locales locales-all
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-RUN locale-gen en_US,UTF-8 && \
-    echo 'LANG="en_US.UTF-8"' > /etc/default/locale
-RUN update-locale
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
 
 
 # Install Postgresql
