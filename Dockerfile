@@ -7,8 +7,8 @@ RUN apt-get update
 RUN apt-get install -y nginx locales
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-RUN locale-gen en_GB && \
-    echo 'LANG="en_GB.UTF-8"' > /etc/default/locale
+RUN locale-gen en_US,UTF-8 && \
+    echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 RUN update-locale
 
 
